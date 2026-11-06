@@ -23,8 +23,10 @@ strip, and the title search at the right of the filter row.
 ```sh
 dsh plugin add @hl3207/dsh-movie
 ```
-
-Or **"Plugins" - "Add plugin" - Select "Registry Official npm registry" - Search and Install "@hl3207/dsh-movie"** in DeepSeek Harness. 
+Or
+```
+**"Plugins" - "Add plugin" - Select "Registry Official npm registry" - Search and Install "@hl3207/dsh-movie"** in DeepSeek Harness. 
+```
 
 Then restart DeepSeek Harness. A film-strip entry appears in the left sidebar; click it and the board opens
 in the main column. The first build takes 15–25 seconds (it queries six public sources and translates the
