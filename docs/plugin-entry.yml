@@ -1,0 +1,26 @@
+# The one file to add as data/plugins/hl3207__dsh-movie.yml in a PR to
+# https://github.com/awesome-dsh-plugin/awesome-dsh-plugin
+#
+# Copy this whole file to
+#   data/plugins/hl3207__dsh-movie.yml
+# and change nothing else: one PR, one file. The READMEs over there are generated
+# from data/plugins/*.yml, so editing them by hand is what breaks other PRs.
+#
+# Field notes (from contributing.md):
+#   url         must match the repository exactly
+#   name        is the link text; owner/repo form
+#   category    one of the valid values — this plugin is a sidebar panel, so `ui`
+#   description.en  the only required field; zh is optional but present below
+#   icon        optional GitHub-hosted raster (~96px, square); our 180px PNG
+#   Do NOT add npm:, install:, version: or screenshots: — the index derives them
+#   (npm from the registry, screenshots from screenshots.json in this repo), and
+#   a hand-written npm: key is rejected.
+# ---------------------------------------------------------------------------
+
+url: https://github.com/hl3207/dsh-movie
+name: hl3207/dsh-movie
+category: ui
+description:
+  en: "Adds a left-sidebar screen radar to the DSH Web GUI: one ranked board of the films and series in cinemas now or opening within the next month across China, the US, Europe, Japan and Korea, each with a poster (or a designed plate when the source CDN is unreachable), a synopsis of five sentences or fewer, source ratings and popular short comments. A search field beside the board filters it as you type and asks Douban, TVMaze and the iTunes storefront about the title you typed, merging their records and grouping the matches that are already on the board. Synopses and comments are translated into the panel language, so switching between Chinese and English re-renders the whole board. It needs no API key and no account."
+  zh: "在 DSH 网页版的左侧栏加一个影视雷达：把正在上映与未来一个月内定档的电影和剧集（中国、美国、欧洲、日本、韩国）汇成一张加权榜单，每条带海报（图床不可达时是一张设计好的占位图）、五句以内简介、各来源评分与热门短评。榜单旁有搜索框，输入即筛，并会向豆瓣、TVMaze 与 iTunes 查询你输入的片名、合并三路结果，榜单里已有的命中单独归组。简介和短评会翻成面板语言，中英文一键切换整块重绘。不需要 API Key，也不需要账号。"
+icon: https://raw.githubusercontent.com/hl3207/dsh-movie/main/icon-180.png

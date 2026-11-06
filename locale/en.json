@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "title": "Screen Radar",
+    "description": "Left-sidebar radar for movies and series in cinemas now or opening within the next month across China, the US, Europe, Japan and Korea: ranked covers, five-sentence synopses, popular comments, and a live Chinese/English switch that translates every synopsis and comment into your language."
+  },
+  "panel": {
+    "title": "Screen Radar",
+    "refresh": "Refresh",
+    "language": "Language"
+  }
+}
