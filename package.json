@@ -1,0 +1,113 @@
+{
+  "name": "@hl3207/dsh-movie",
+  "version": "0.4.0",
+  "type": "module",
+  "description": "Left-sidebar screen radar for DeepSeek Harness: ranks the movies and series in cinemas now or opening within the next month across China, the US, Europe, Japan and Korea, with real posters, five-sentence synopses, popular comments, a title search that merges Douban / TVMaze / iTunes, and a live zh/en switch that translates everything.",
+  "author": {
+    "name": "hl3207",
+    "url": "https://github.com/hl3207"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/**/*.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-client-locale": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0",
+    "@deepseek-ai/dsh-client-modules": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0",
+    "@deepseek-ai/dsh-client-ui-sidebar": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0",
+    "@deepseek-ai/dsh-host-webserver": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0",
+    "@deepseek-ai/dsh-tools": ">=0.2.1-0 <0.3.0-0 || >=0.2.2-0 <0.3.0-0",
+    "@deepseek-ai/schemastery": "^3.18.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-locale": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-modules": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-ui-sidebar": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-host-webserver": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek-harness",
+    "cordis",
+    "movie",
+    "tv-series",
+    "film",
+    "radar",
+    "cinema",
+    "douban",
+    "justwatch",
+    "tvmaze",
+    "sidebar",
+    "panel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hl3207/dsh-movie.git"
+  },
+  "homepage": "https://github.com/hl3207/dsh-movie#readme",
+  "bugs": {
+    "url": "https://github.com/hl3207/dsh-movie/issues"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "pack": "npm pack"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

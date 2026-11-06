@@ -1,0 +1,32 @@
+# dsh-movie — bundle layer (this package's `dsh.bundle.patch`).
+#
+# One Host row. `name` must stay EXACTLY the bare package name: the Web Client
+# half (./client.js) attaches to the row whose specifier is precisely the
+# package name, so a relative path or a subpath here silently drops the left
+# sidebar entry.
+#
+# Every key below has a plugin-side default; they are seeded here so the row is
+# self-documenting in the Plugins settings page. A later profile layer that
+# overrides this row replaces the WHOLE `config` value (no deep merge) — restate
+# every key you want to keep.
+- insert:
+    - id: dsh-movie
+      name: '@hl3207/dsh-movie'
+      config:
+        regions: [china, us, europe, japan, korea]
+        lookbackDays: 21
+        upcomingDays: 31
+        limit: 20
+        language: auto
+        translate: true
+        translateProvider: auto
+        includeSeries: true
+        doubanEnabled: true
+        doubanEnrichLimit: 10
+        commentLimit: 3
+        weights:
+          heat: 0.28
+          rt: 0.22
+          douban: 0.28
+          anticipation: 0.22
+        cacheTtlMinutes: 60

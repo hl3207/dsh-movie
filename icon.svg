@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="dsh-movie">
+  <defs>
+    <linearGradient id="dshMovieBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2A2E3A"/>
+      <stop offset="1" stop-color="#14161C"/>
+    </linearGradient>
+    <linearGradient id="dshMovieRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF7A45"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="url(#dshMovieBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="#3A3F4D"/>
+
+  <!-- radar arcs sweeping out of the centre -->
+  <g fill="none" stroke="url(#dshMovieRing)" stroke-linecap="round">
+    <path d="M32 12a20 20 0 0 1 20 20" stroke-width="3" opacity="0.95"/>
+    <path d="M32 20a12 12 0 0 1 12 12" stroke-width="2.4" opacity="0.6"/>
+  </g>
+
+  <!-- film strip stub on the left -->
+  <g fill="#5C6474">
+    <rect x="11" y="24" width="3.4" height="5" rx="1"/>
+    <rect x="11" y="32" width="3.4" height="5" rx="1"/>
+    <rect x="11" y="40" width="3.4" height="5" rx="1"/>
+  </g>
+
+  <!-- play mark: the title you are about to watch -->
+  <path d="M26.5 27.5 40.5 36 26.5 44.5Z" fill="#F7F8FA"/>
+
+  <!-- ranking bars: three ascending positions -->
+  <g fill="#FFC24B">
+    <rect x="19" y="45" width="4.4" height="6" rx="1.6" opacity="0.55"/>
+    <rect x="26" y="42" width="4.4" height="9" rx="1.6" opacity="0.75"/>
+    <rect x="33" y="38" width="4.4" height="13" rx="1.6"/>
+  </g>
+</svg>
