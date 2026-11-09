@@ -168,6 +168,37 @@ function renderBoard(board, locale) {
   return lines.join('\n')
 }
 
+/** The tool's limit argument: 1-60, or null to keep the configured board size. */
+const clampToolLimit = (value) => {
+  const n = Number(value)
+  if (!Number.isFinite(n) || n <= 0) return null
+  return Math.max(1, Math.min(60, Math.round(n)))
+}
+
+/**
+ * Cut a board down to limit picks for the tool response, keeping counts in
+ * step with what is actually returned. The cached board itself is left
+ * alone, so the sidebar panel keeps its configured size.
+ * @param {object} board @param {number|null} limit @returns {object}
+ */
+const limitBoard = (board, limit) => {
+  if (!limit || !Array.isArray(board?.picks) || board.picks.length <= limit) return board
+  const picks = board.picks.slice(0, limit)
+  const now = picks.filter((pick) => pick.releaseStatus === 'now').length
+  return {
+    ...board,
+    picks,
+    counts: {
+      ...board.counts,
+      total: picks.length,
+      now,
+      upcoming: picks.length - now,
+      movie: picks.filter((pick) => pick.mediaType === 'movie').length,
+      series: picks.filter((pick) => pick.mediaType === 'series').length,
+    },
+  }
+}
+
 export function apply(ctx, config) {
   const resolved = resolveRegions(config.regions)
   const runtimeConfig = {
@@ -516,6 +547,7 @@ export function apply(ctx, config) {
     async execute(args) {
       const locale = pickLocale(args?.locale)
       const action = typeof args?.action === 'string' ? args.action : 'refresh'
+      const limit = clampToolLimit(args?.limit)
       if (action === 'clear') {
         boards.delete(locale)
         return lossless({
@@ -523,13 +555,23 @@ export function apply(ctx, config) {
           board: { picks: [], counts: { total: 0, now: 0, upcoming: 0 }, sources: [], window: {} },
         })
       }
-      if (action === 'read' && boards.has(locale)) {
-        return lossless({ kind: 'board', board: boards.get(locale).board, cached: true })
+      if (action === 'read') {
+        const existing = boards.get(locale)
+        if (existing) return lossless({ kind: 'board', board: limitBoard(existing.board, limit), cached: true })
+        // read is documented as network-free, so on a cold cache it must not
+        // fall through to buildBoard and start a multi-second fetch behind a
+        // call that promised to touch nothing.
+        return lossless({
+          kind: 'board',
+          board: { picks: [], counts: { total: 0, now: 0, upcoming: 0 }, sources: [], window: {} },
+          cached: false,
+          hint: 'no board has been built for this locale yet - use action=refresh',
+        })
       }
       const result = await buildBoard(locale, { force: action === 'refresh' && args?.force === true })
       return lossless({
         kind: 'board',
-        board: result.board,
+        board: limitBoard(result.board, limit),
         cached: result.cached === true,
         ...(result.board.degraded
           ? { error: 'providers could not fill the board; retry later or report the sources that failed' }

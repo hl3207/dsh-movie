@@ -1,6 +1,6 @@
 {
   "name": "@hl3207/dsh-movie",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "type": "module",
   "description": "Left-sidebar screen radar for DeepSeek Harness: ranks the movies and series in cinemas now or opening within the next month across China, the US, Europe, Japan and Korea, with real posters, five-sentence synopses, popular comments, a title search that merges Douban / TVMaze / iTunes, and a live zh/en switch that translates everything.",
   "author": {

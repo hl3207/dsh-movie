@@ -4,6 +4,21 @@ All notable changes to this plugin are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] — 2026-11-09
+
+### Fixed
+
+- **IMDb rating** — the chip no longer sits on a permanent «—». `pickMetrics` read `item.imdbRaw` and
+  `scores.rt.imdb`, and nothing populated either: the wire item carries the rating on `item.imdb`. Neither
+  the chip nor the `movie_board` text output had therefore ever shown an IMDb value.
+- **`movie_board` `limit`** — the argument was declared in the tool parameters and never read, so every
+  call returned the configured board size. The response is now cut to the requested length (1–60) and
+  `counts` follows what is actually returned; the sidebar panel keeps its configured size, because the
+  cached board itself is left untouched.
+- **`action=read` is now offline on a cold cache** — the route fell through to the builder whenever no
+  board was cached, so a call documented as "without touching the network" could spend tens of seconds
+  fetching. It returns the empty board with a hint to run `action=refresh` instead.
+
 ## [0.4.0] — 2026-11-05
 
 First public release. Earlier internal milestones (0.1.0–0.3.0) were never published, so everything
